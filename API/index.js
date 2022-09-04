@@ -14,10 +14,12 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 //Endpoint Get lista de productos en la pagina web
-app.get('/admin/producto', (req, res) => { 
-    res.send(200,{productos:[]});
+app.get('/admin/producto/:sku', (req, res) => { 
+    res.status(404).send({message:'El producto no se encuentra'})
+    res.status(200).send({message:'El producto se encuentra'})
 })
 
+//Listening del puerto
 app.listen(app.get('port'),()=>{
     console.log(`Server listening on port ${app.get('port')}`);
 });
